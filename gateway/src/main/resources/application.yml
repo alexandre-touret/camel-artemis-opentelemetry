@@ -1,0 +1,22 @@
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: path_route
+          uri: http://127.0.0.1:8080
+          predicates:
+            - Path=/camel/test
+server:
+  port: 9080

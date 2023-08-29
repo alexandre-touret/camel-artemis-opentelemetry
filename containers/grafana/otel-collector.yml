@@ -1,0 +1,35 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
+
+
+connectors:
+  servicegraph:
+    latency_histogram_buckets: [1,2,3,4,5]
+    dimensions:
+      - dimension-1
+      - dimension-2
+    store:
+      ttl: 1s
+      max_items: 10
+
+exporters:
+  otlp:
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+  prometheus/servicegraph:
+    endpoint: prometheus:9090
+    namespace: servicegraph
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp,servicegraph]
+    metrics/servicegraph:
+      receivers: [ servicegraph ]
+      exporters: [ prometheus/servicegraph ]

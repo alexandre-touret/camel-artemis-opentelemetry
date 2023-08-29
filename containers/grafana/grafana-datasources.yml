@@ -1,0 +1,19 @@
+apiVersion: 1
+datasources:
+  # Prometheus backend where metrics are sent
+  - name: Prometheus
+    type: prometheus
+    uid: prometheus
+    url: prometheus:9090
+    jsonData:
+      httpMethod: GET
+    version: 1
+  - name: Tempo
+    type: tempo
+    uid: tempo
+    url: tempo:3200
+    jsonData:
+      httpMethod: GET
+      serviceMap:
+        datasourceUid: 'prometheus'
+    version: 1
