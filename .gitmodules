@@ -1,3 +1,0 @@
-[submodule "containers/elastic-apm-contrib"]
-	path = containers/elastic-apm-contrib
-	url = https://github.com/elastic/apm-contrib.git

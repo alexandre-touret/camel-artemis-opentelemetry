@@ -4,14 +4,14 @@ datasources:
   - name: Prometheus
     type: prometheus
     uid: prometheus
-    url: prometheus:9090
+    url: http://prometheus:9090
     jsonData:
       httpMethod: GET
     version: 1
   - name: Tempo
     type: tempo
     uid: tempo
-    url: tempo:3200
+    url: http://tempo:3200
     jsonData:
       httpMethod: GET
       serviceMap:
